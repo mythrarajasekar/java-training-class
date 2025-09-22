@@ -1,0 +1,106 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        int num1 = 0;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Shops " +"\n" + "1.KFC" + "\n" + "2.POTHYS" + "\n" + "3.SUBWAY" + " \n" + "4.Starbucks " +"\n" + "Enter shop number : ");
+        num1 = sc.nextInt();
+        switch(num1){
+            case 1:
+                kfc();
+                break;
+            case 2:
+                pothys();
+                break;
+            case 3:
+                subway();
+                break;
+            case 4:
+                starbucks();
+                break;
+            default : 
+            System.out.println("Enter correct shop number");
+        }
+        
+        System.out.println("Thank you for visiting!....");
+       
+    }
+     public static void kfc(){
+         Scanner sc = new Scanner(System.in);
+         System.out.println("Menu" + "\n" + "1. Wings = rp 150" + "\n" + "2.Leg = rp 100"+ "\n"+ "Enter your choice");
+         int a = sc.nextInt();
+         switch(a){
+             case 1 :
+                 System.out.println("Number of Wings : ");
+                 int no1 = sc.nextInt();
+                 System.out.println("Your bill: " + no1*150);
+            case 2 :
+                 System.out.println("Number of Legs : ");
+                 int no11 = sc.nextInt();
+                 System.out.println("Your bill: " + no11*100);
+            default :
+            System.out.println("Outoff stock");
+         }
+    }
+
+        public static void pothys(){
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Items" + "\n" + "1. Sarree = rp 150" + "\n" + "2.Chudi = rp 100"+ "\n"+ "Enter your choice");
+         int a = sc.nextInt();
+         switch(a){
+             case 1 :
+                 System.out.println("Number of Sarree : ");
+                 int no2 = sc.nextInt();
+                 System.out.println("Your bill: " + no2*150);
+                 break;
+            case 2 :
+                 System.out.println("Number of Chudi : ");
+                 int no21 = sc.nextInt();
+                 System.out.println("Your bill: " + no21*100);
+                 break;
+            default :
+            System.out.println("Outoff stock");
+         }
+        }
+        public static void subway(){
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Menu" + "\n" + "1. Buritto = rp 150" + "\n" + "2.Sandwich = rp 100"+ "\n"+ "Enter your choice");
+         int a = sc.nextInt();
+         switch(a){
+             case 1 :
+                 System.out.println("Number of Buritto : ");
+                 int no3 = sc.nextInt();
+                 System.out.println("Your bill: " + no3*150);
+                 break;
+            case 2 :
+                 System.out.println("Number of Sandwich : ");
+                 int no31 = sc.nextInt();
+                 System.out.println("Your bill: " + no31*100);
+                 break;
+            default :
+            System.out.println("Outoff stock");
+         }
+        }
+        public static void starbucks(){
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Menu" + "\n" + "1. Coffee = rp 150" + "\n" + "2.Tea = rp 100" + "\n"+ "Enter your choice");
+         int a = sc.nextInt();
+         switch(a){
+             case 1 :
+                 System.out.println("Number of Coffee : ");
+                 int no4 = sc.nextInt();
+                 System.out.println("Your bill: " + no4*150);
+                 break;
+            case 2 :
+                 System.out.println("Number of Tea : ");
+                 int no41 = sc.nextInt();
+                 System.out.println("Your bill: " + no41*100);
+                 break;
+            default :
+            System.out.println("Outoff stock");
+         }
+        }
+    }
+
+
