@@ -1,0 +1,28 @@
+public class Main {
+
+    public static void main(String[] args) {
+        int n = 4;
+        printDecreasingStars(n);
+        printIncreasingStars(2, n);
+    }
+
+    public static void printDecreasingStars(int n) {
+        for (int i = n; i >= 1; i--) {
+            printStars(i);
+            System.out.println();
+        }
+    }
+
+    public static void printIncreasingStars(int start, int end) {
+        for (int i = start; i <= end; i++) {
+            printStars(i);
+            System.out.println();
+        }
+    }
+
+    public static void printStars(int count) {
+        for (int i = 0; i < count; i++) {
+            System.out.print("*  ");
+        }
+    }
+}
