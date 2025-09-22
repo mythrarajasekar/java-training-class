@@ -1,0 +1,50 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        int num1 = 0;
+        int num2 = 0;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter num 1 : ");
+        num1 = sc.nextInt();
+        System.out.print("Enter num 2 : ");
+        num2 = sc.nextInt();
+        System.out.print("Enter operator : ");
+        char op = sc.next().charAt(0);
+        switch(op){
+            case '+':
+                add(num1,num2);
+                break;
+            case '-':
+                sub(num1,num2);
+                break;
+            case '*':
+                mul(num1,num2);
+                break;
+            case '/':
+                div(num1,num2);
+                break;
+            case '%':
+                modu(num1,num2);
+                break;
+            default : 
+            System.out.println("Enter correct operator");
+        }
+       
+    }
+     public static void add(int a, int b){
+            System.out.println(a+b);
+        }
+        public static void sub(int a, int b){
+            System.out.println(a-b);
+        }
+        public static void mul(int a, int b){
+            System.out.println(a*b);
+        }
+        public static void div(int a, int b){
+            System.out.println(a/b);
+        }
+        public static void modu(int a, int b){
+            System.out.println(a%b);
+        }
+}
