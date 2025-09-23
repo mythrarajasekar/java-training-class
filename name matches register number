@@ -1,0 +1,19 @@
+import java.util.Scanner;
+class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String []names={"Harishika","Haarika","Harish","Sudhan","Thiral"};
+        int []reg={123,454,675,998,457};
+        database(names,reg);
+    }
+    public static void database(String []names,int reg[]){
+        Scanner sb=new Scanner(System.in);
+        System.out.print("Enter name: ");
+        String uName=sb.nextLine();
+        for(int i=0;i<names.length;i++){
+            if(uName.equalsIgnoreCase(names[i])){
+                System.out.print("REGISTER NUMBER : " + reg[i]);
+            }
+        }
+    }
+}
