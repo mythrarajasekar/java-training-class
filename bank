@@ -1,0 +1,182 @@
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Account[] accounts = new Account[100];
+        int count = 0;
+        CreateAccount c = new CreateAccount();
+        CheckBalance chk = new CheckBalance();
+        DeleteAccount del = new DeleteAccount();
+        ApplyLoan loan = new ApplyLoan();
+        Transaction trans = new Transaction();
+        ListUsers list = new ListUsers();
+
+        while (true) {
+            System.out.println("HDFC BANK");
+            System.out.println("1. Create Account");
+            System.out.println("2. Check Balance");
+            System.out.println("3. Delete Account");
+            System.out.println("4. Apply Loan");
+            System.out.println("5. List Users");
+            System.out.println("6. Transaction");
+            System.out.println("7. Exit");
+            System.out.print("Enter your Option: ");
+            int option = sc.nextInt();
+
+            if (option == 1) {
+                System.out.print("Enter Account Number: ");
+                int accNo = sc.nextInt();
+                sc.nextLine();
+                System.out.print("Enter Name: ");
+                String name = sc.nextLine();
+                System.out.print("Enter Initial Balance: ");
+                double bal = sc.nextDouble();
+                count = c.create(accounts, count, accNo, name, bal);
+            } else if (option == 2) {
+                System.out.print("Enter Account Number: ");
+                int accNo = sc.nextInt();
+                chk.check(accounts, count, accNo);
+            } else if (option == 3) {
+                System.out.print("Enter Account Number: ");
+                int accNo = sc.nextInt();
+                count = del.delete(accounts, count, accNo);
+            } else if (option == 4) {
+                System.out.print("Enter Account Number: ");
+                int accNo = sc.nextInt();
+                System.out.print("Enter Loan Amount: ");
+                double loanAmt = sc.nextDouble();
+                loan.apply(accounts, count, accNo, loanAmt);
+            } else if (option == 5) {
+                list.list(accounts, count);
+            } else if (option == 6) {
+                System.out.println("1. Deposit");
+                System.out.println("2. Withdraw");
+                int ch = sc.nextInt();
+                System.out.print("Enter Account Number: ");
+                int accNo = sc.nextInt();
+                System.out.print("Enter Amount: ");
+                double amt = sc.nextDouble();
+                if (ch == 1) {
+                    trans.deposit(accounts, count, accNo, amt);
+                } else {
+                    trans.withdraw(accounts, count, accNo, amt);
+                }
+            } else if (option == 7) {
+                System.out.println("Thank you for using HDFC Bank.");
+                break;
+            } else {
+                System.out.println("Invalid option!");
+            }
+        }
+        sc.close();
+    }
+}
+
+class Account {
+    int accountNumber;
+    String holderName;
+    double balance;
+    boolean hasLoan;
+}
+
+class CreateAccount {
+    int create(Account[] accounts, int count, int accNo, String name, double initialBalance) {
+        Account acc = new Account();
+        acc.accountNumber = accNo;
+        acc.holderName = name;
+        acc.balance = initialBalance;
+        acc.hasLoan = false;
+        accounts[count] = acc;
+        count++;
+        System.out.println("Account created for " + name);
+        return count;
+    }
+}
+
+class CheckBalance {
+    void check(Account[] accounts, int count, int accNo) {
+        for (int i = 0; i < count; i++) {
+            if (accounts[i].accountNumber == accNo) {
+                System.out.println("Balance: ₹" + accounts[i].balance);
+                return;
+            }
+        }
+        System.out.println("Account not found!");
+    }
+}
+
+class DeleteAccount {
+    int delete(Account[] accounts, int count, int accNo) {
+        for (int i = 0; i < count; i++) {
+            if (accounts[i].accountNumber == accNo) {
+                for (int j = i; j < count - 1; j++) {
+                    accounts[j] = accounts[j + 1];
+                }
+                accounts[count - 1] = null;
+                count--;
+                System.out.println("Account deleted.");
+                return count;
+            }
+        }
+        System.out.println("Account not found!");
+        return count;
+    }
+}
+
+class ApplyLoan {
+    void apply(Account[] accounts, int count, int accNo, double loanAmount) {
+        for (int i = 0; i < count; i++) {
+            if (accounts[i].accountNumber == accNo) {
+                if (!accounts[i].hasLoan) {
+                    accounts[i].balance += loanAmount;
+                    accounts[i].hasLoan = true;
+                    System.out.println("Loan of ₹" + loanAmount + " approved.");
+                } else {
+                    System.out.println("Loan already taken!");
+                }
+                return;
+            }
+        }
+        System.out.println("Account not found!");
+    }
+}
+
+class Transaction {
+    void deposit(Account[] accounts, int count, int accNo, double amount) {
+        for (int i = 0; i < count; i++) {
+            if (accounts[i].accountNumber == accNo) {
+                accounts[i].balance += amount;
+                System.out.println("₹" + amount + " deposited.");
+                return;
+            }
+        }
+        System.out.println("Account not found!");
+    }
+
+    void withdraw(Account[] accounts, int count, int accNo, double amount) {
+        for (int i = 0; i < count; i++) {
+            if (accounts[i].accountNumber == accNo) {
+                if (amount <= accounts[i].balance) {
+                    accounts[i].balance -= amount;
+                    System.out.println("₹" + amount + " withdrawn.");
+                } else {
+                    System.out.println("Insufficient balance!");
+                }
+                return;
+            }
+        }
+        System.out.println("Account not found!");
+    }
+}
+
+class ListUsers {
+    void list(Account[] accounts, int count) {
+        if (count == 0) {
+            System.out.println("No accounts available.");
+        } else {
+            for (int i = 0; i < count; i++) {
+                System.out.println("Account No: " + accounts[i].accountNumber + ", Name: " + accounts[i].holderName + ", Balance: ₹" + accounts[i].balance);
+            }
+        }
+    }
+}
