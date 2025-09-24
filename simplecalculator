@@ -1,0 +1,57 @@
+import java.util.Scanner;
+public class SimpleCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Enter second number: ");
+        double num2 = scanner.nextDouble();
+        System.out.print("Choose operation (+, -, *, /): ");
+        char op = scanner.next().charAt(0);
+        double result;
+        if (op == '+') {
+            Addition addition = new Addition();
+            result = addition.add(num1, num2);
+            System.out.println("Result: " + result);
+        } else if (op == '-') {
+            Subtraction subtraction = new Subtraction();
+            result = subtraction.subtract(num1, num2);
+            System.out.println("Result: " + result);
+        } else if (op == '*') {
+            Multiplication multiplication = new Multiplication();
+            result = multiplication.multiply(num1, num2);
+            System.out.println("Result: " + result);
+        } else if (op == '/') {
+            Division division = new Division();
+            result = division.divide(num1, num2);
+            if (!Double.isNaN(result)) {
+                System.out.println("Result: " + result);
+            }
+        } else {
+            System.out.println("Invalid operation!");
+        }
+    }
+}class Addition {
+    double add(double a, double b) {
+        return a + b;
+    }
+}
+class Subtraction {
+    double subtract(double a, double b) {
+        return a - b;
+    }
+}
+class Multiplication {
+    double multiply(double a, double b) {
+        return a * b;
+    }
+}
+class Division {
+    double divide(double a, double b) {
+        if (b == 0) {
+            System.out.println("Error! Division by zero.");
+            return Double.NaN;
+        }
+        return a / b;
+    }
+}
