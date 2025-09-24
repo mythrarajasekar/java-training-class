@@ -1,0 +1,40 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Parent p1 = new Parent();
+        p1.par();
+        child1 c1 = new child1();
+        c1.par();
+        c1.chil1();
+        child2 c2 = new child2();
+        c2.par();
+        c2.chil2();
+        child3 c3 = new child3();
+        c3.par();
+        c3.chil3();
+    }
+}
+
+class Parent{
+    public static void par(){
+        System.out.println("Parent");
+    }
+}
+
+class child1 extends Parent{
+    public static void chil1(){
+        System.out.println("Child 1");
+    }
+}
+
+class child2 extends Parent{
+    public static void chil2(){
+        System.out.println("Child 2");
+    }
+}
+
+class child3 extends Parent{
+    public static void chil3(){
+        System.out.println("Child 3");
+    }
+}
