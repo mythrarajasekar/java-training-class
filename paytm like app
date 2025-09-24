@@ -1,0 +1,168 @@
+import java.util.*;
+
+public class PaytmApp {
+    static Scanner sc = new Scanner(System.in);
+    static Account[] accounts = new Account[100];
+    static int accountCount = 0;
+
+    public static Account findAccount(String number) {
+        for (int i = 0; i < accountCount; i++) {
+            if (accounts[i].number.equals(number)) {
+                return accounts[i];
+            }
+        }
+        return null;
+    }
+
+    public static void createAccount() {
+        System.out.print("Enter Name: ");
+        String name = sc.nextLine();
+        System.out.print("Enter Number: ");
+        String number = sc.nextLine();
+
+        if (findAccount(number) != null) {
+            System.out.println("Account already exists with this number!");
+            return;
+        }
+
+        System.out.print("Create Password: ");
+        String password = sc.nextLine();
+
+        accounts[accountCount] = new Account();
+        accounts[accountCount].create(name, number, password);
+        accountCount++;
+
+        System.out.println("Account created successfully!");
+    }
+
+    public static void login() {
+        System.out.print("Enter Number: ");
+        String number = sc.nextLine();
+        System.out.print("Enter Password: ");
+        String password = sc.nextLine();
+
+        Account acc = findAccount(number);
+
+        if (acc != null && acc.password.equals(password)) {
+            System.out.println("Login Successful!");
+            accountMenu(acc);
+        } else {
+            System.out.println("Invalid Number or Password!");
+        }
+    }
+    
+    public static void accountMenu(Account acc) {
+        while (true) {
+            System.out.println("\n--- Account Menu ---");
+            System.out.println("1. Show Account Details");
+            System.out.println("2. Send Money");
+            System.out.println("3. Balance Check");
+            System.out.println("4. Change Password");
+            System.out.println("5. Delete Account");
+            System.out.println("6. Logout");
+            System.out.print("Enter choice: ");
+            int choice = Integer.parseInt(sc.nextLine());
+
+            switch (choice) {
+                case 1: acc.showDetails(); break;
+                case 2: sendMoney(acc); break;
+                case 3: System.out.println("Balance: ₹" + acc.balance); break;
+                case 4: changePassword(acc); break;
+                case 5: deleteAccount(acc); return;
+                case 6: return;
+                default: System.out.println("Invalid choice!");
+            }
+        }
+    }
+
+    public static void sendMoney(Account sender) {
+        System.out.print("Enter Receiver Number: ");
+        String receiverNumber = sc.nextLine();
+
+        Account receiver = findAccount(receiverNumber);
+        if (receiver == null) {
+            System.out.println("Receiver not found!");
+            return;
+        }
+
+        System.out.print("Enter Amount: ");
+        double amount = Double.parseDouble(sc.nextLine());
+
+        if (amount > sender.balance) {
+            System.out.println("Insufficient Balance!");
+            return;
+        }
+
+        sender.balance -= amount;
+        receiver.balance += amount;
+
+        System.out.println("Money Sent Successfully!");
+        System.out.println("Remaining Balance: ₹" + sender.balance);
+    }
+
+    public static void changePassword(Account acc) {
+        System.out.print("Enter Old Password: ");
+        String old = sc.nextLine();
+
+        if (acc.password.equals(old)) {
+            System.out.print("Enter New Password: ");
+            acc.password = sc.nextLine();
+            System.out.println("Password Changed!");
+        } else {
+            System.out.println("Wrong Old Password!");
+        }
+    }
+
+    public static void deleteAccount(Account acc) {
+        for (int i = 0; i < accountCount; i++) {
+            if (accounts[i] == acc) {
+                for (int j = i; j < accountCount - 1; j++) {
+                    accounts[j] = accounts[j + 1];
+                }
+                accounts[accountCount - 1] = null;
+                accountCount--;
+                System.out.println("Account Deleted!");
+                return;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("\n--- Paytm Like App ---");
+            System.out.println("1. Create Account");
+            System.out.println("2. Login");
+            System.out.println("3. Exit");
+            System.out.print("Enter choice: ");
+            int choice = Integer.parseInt(sc.nextLine());
+
+            switch (choice) {
+                case 1: createAccount(); break;
+                case 2: login(); break;
+                case 3: System.out.println("Exiting..."); return;
+                default: System.out.println("Invalid choice!");
+            }
+        }
+    }
+    
+}
+class Account {
+    String name;
+    String number;
+    String password;
+    double balance;
+    
+    void create(String name, String number, String password) {
+        this.name = name;
+        this.number = number;
+        this.password = password;
+        this.balance = 1000;
+    }
+
+    void showDetails() {
+        System.out.println("\n--- Account Details ---");
+        System.out.println("Name: " + name);
+        System.out.println("Number: " + number);
+        System.out.println("Balance: ₹" + balance);
+    }
+}
