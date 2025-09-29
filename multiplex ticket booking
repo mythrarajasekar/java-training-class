@@ -1,0 +1,93 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----Welcome to Mythra Cinimas-----");
+        System.out.print("How many family you came: ");
+        int fam = sc.nextInt();
+        for (int c = 0; c < fam; c++) {
+            System.out.print("Enter which movie u gonna see " + "\n" +
+                             "1.COOLIE" + "\n" +
+                             "2.MADHARASI" + "\n" +
+                             "3.IDLYKADA" + "\n" +
+                             "Enter number: ");
+            int mov = sc.nextInt();
+            switch (mov) {
+                case 1: coolie(); break;
+                case 2: madharasi(); break;
+                case 3: idlykada(); break;
+                default: System.out.print("Enter correct option! ");
+            }
+        }
+    }
+
+    static void coolie() {
+        seatarra();
+    }
+
+    static void madharasi() {
+        seatarra();
+    }
+
+    static void idlykada() {
+        seatarra();
+    }
+
+    static void seatarra() {
+        Scanner sc1 = new Scanner(System.in);
+        System.out.print("Enter number of persons: ");
+        int n = sc1.nextInt();
+
+        System.out.println("------------------");
+        System.out.println("|     SCREEN     |");
+        System.out.println("------------------");
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print("O " + "\t");
+            }
+            System.out.println();
+        }
+
+        seat s = new seat();
+        s.arra(n);
+    }
+}
+
+class seat {
+    public void arra(int n) {
+        Scanner scn = new Scanner(System.in);
+        int[][] seats = new int[5][5];
+
+        for (int a = 0; a < n; a++) {
+            System.out.print("Enter where you need your seat " + (a+1));
+            System.out.print("\n" + "Enter row: ");
+            int row = scn.nextInt();
+            System.out.print("Enter column: ");
+            int col = scn.nextInt();
+            if(seats[row][col]==0){
+            seats[row][col] = 1;
+            }
+            else{
+                System.out.print("Seat already booked! ");
+                System.out.print("\n" + "Enter row: ");
+                row = scn.nextInt();
+                System.out.print("Enter column: ");
+                col = scn.nextInt();
+                seats[row][col] = 1;
+            }
+        }
+
+        System.out.println("------------------");
+        System.out.println("|     SCREEN     |");
+        System.out.println("------------------");
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print(seats[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+}
