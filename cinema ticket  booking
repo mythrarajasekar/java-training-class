@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----Welcome to Mythra Ciniemas-----");
+        System.out.print("Enter number of persons: ");
+        int n = sc.nextInt();
+        System.out.println("------------------");
+        System.out.println("|     SCREEN     |");
+        System.out.println("------------------");
+        for (int i = 0; i<5; i++){
+            for (int j = 0; j<5; j++){
+                System.out.print( "O "+ "\t");
+            }
+            System.out.println("\n");
+        }
+        seat s = new seat();
+        s.arra(n);
+
+    }
+}
+
+class seat{
+    public void arra(int n){
+        Scanner scn = new Scanner(System.in);
+         int [] [] seats = new int [5] [5]; 
+         for (int a = 0 ; a<n; a++){
+         System.out.print("Enter where you need your seat ");
+         System.out.print("\n"+ "Enter row: ");
+         int row = scn.nextInt();
+         System.out.print("\n" + "Enter column: ");
+         int col = scn.nextInt();
+         seats[row][col] = 1;
+         System.out.println("------------------");
+         System.out.println("|     SCREEN     |");
+         System.out.println("------------------");
+         for (int i =0 ; i<5; i++){
+             for(int j= 0 ; j< 5; j++){
+                 System.out.print(seats[i][j] + "\t");
+                 }
+                 System.out.println();
+             }
+         }
+    }
+}
