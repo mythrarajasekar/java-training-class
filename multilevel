@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        GrandParent gp = new GrandParent();
+        gp.Gp();
+        Parent p1 = new Parent();
+        p1.Gp();
+        p1.par();
+        child1 c1 = new child1();
+        c1.par();
+        c1.chil1();
+    }
+}
+
+class Parent extends GrandParent{
+    public static void par(){
+        System.out.println("Parent");
+    }
+}
+
+class child1 extends Parent{
+    public static void chil1(){
+        System.out.println("Child 1");
+    }
+}
+
+class GrandParent{
+    public static void Gp(){
+        System.out.println("GrandParent");
+    }
+}
+
