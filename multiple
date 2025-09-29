@@ -1,0 +1,32 @@
+public class Main{
+    public static void main(String[] args){
+        D c = new D();
+        c.claa();
+        c.clab();
+        c.clad();
+        
+    }
+}
+
+
+interface A{
+    public void claa();
+}
+
+interface B{
+    public void clab();
+}
+
+class D implements A,B{
+    public static void clad(){
+        System.out.println("D");
+    }
+    
+    public void claa(){
+        System.out.println("A");
+    }
+    
+    public void clab(){
+        System.out.println("B");
+    }
+}
