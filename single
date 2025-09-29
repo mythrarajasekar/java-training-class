@@ -1,0 +1,23 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+       child1 ch = new child1();
+       ch.chil1();
+       ch.par();
+    }
+}
+
+class Parent {
+    public static void par(){
+        System.out.println("Parent");
+    }
+}
+
+class child1 extends Parent{
+    public static void chil1(){
+        System.out.println("Child 1");
+    }
+}
+
+
+
