@@ -1,0 +1,37 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter int 1 : ");
+        int n = sc.nextInt();
+        System.out.print("Enter float 2 : ");
+        float m = sc.nextFloat();
+        int o = 5;
+        add(n,n);
+        add(n,n,n);
+        add(n,m);
+        add(m,n);
+        add(m,m);
+    }
+    
+    static void add(int a, int b){
+        System.out.println(a+b);
+    }
+    
+    static void add(int a, int b, int c){
+        System.out.println(a+b+c);
+    }
+    
+    static void add(int a , float b){
+        System.out.println(a+b);
+    }
+    
+    static void add(float a, int b){
+        System.out.println(a+b);
+    }
+    
+    static void add(float a, float b){
+        System.out.println(a+b);
+    }
+}
+
