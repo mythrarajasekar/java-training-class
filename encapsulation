@@ -1,0 +1,19 @@
+class Main {
+    public static void main(String[] args) {
+        Bank bk = new Bank();
+        bk.setName("Mythra");
+        System.out.println(bk.getName());
+    }
+}
+
+class Bank{
+    private String name;
+    
+    void setName(String a){
+        this.name = a;
+    }
+    
+    String getName(){
+        return name;
+    }
+}
