@@ -1,0 +1,36 @@
+class Main {
+    public static void main(String[] args) {
+        Locker loc = new Parent();
+        loc.Chain();
+        loc.Ring();
+        
+        Locker loc2 = new Me();
+        loc2.Ring();
+        loc2.Chain();
+    }
+}
+
+abstract class Locker{
+    abstract void Chain();
+    abstract void Ring();
+}
+
+class Parent extends Locker{
+    void Chain(){
+        System.out.println("Parent saw Chain");
+    }
+    void Ring(){
+        System.out.println("Parent saw Ring");
+    }
+}
+
+class Me extends Locker{
+    void Chain(){
+        System.out.println("Me saw Chain");
+    }
+    
+    void Ring(){
+        System.out.println("Me saw Ring");
+    }
+    
+}
