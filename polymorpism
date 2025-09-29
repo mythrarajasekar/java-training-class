@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        A obj = new A();
+        obj.add();
+        
+        A obj1 = new B();
+        obj1.add();
+    }
+}
+
+class A{
+    public void add(){
+        System.out.println("CLass A ");
+    }
+}
+
+class B extends A{
+    public void add(){
+        System.out.print("CLass B");
+    }
+}
