@@ -1,0 +1,31 @@
+class Main {
+    public static void main(String[] args) {
+        Bank bk = new Bank();
+        bk.setName("Mythra","9876543210",1234);
+        System.out.println(bk.getName() +"\n" + bk.getPhone() +"\n" + bk.getpin());
+    }
+}
+
+class Bank{
+    private String name;
+    private String Phone;
+    private int pin;
+    
+    void setName(String a, String b, int c){
+        this.name = a;
+        this.Phone = b;
+        this.pin = c;
+    }
+    
+    String getName(){
+        return name;
+    }
+    
+    String getPhone(){
+        return Phone;
+    }
+    
+    int getpin(){
+        return pin;
+    }
+}
