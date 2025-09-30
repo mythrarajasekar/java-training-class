@@ -1,0 +1,34 @@
+class Main {
+    public static void main(String[] args) {
+        try{
+            //indexoutofbound
+            int [] a = new int[3];
+            int a[7] = 8;
+            
+            //arithmeticerror
+            int b = 10/0;
+            System.out.print(b);
+            
+            //nullpointer
+            String c = null;
+            System.out.print(c.length());
+            
+            //inputmismatch
+            int d;
+            Scanner sc = new Scanner(System.in);
+            int d = sc.nextInt();
+        }
+        
+        catch(ArithmeticException e){
+            System.out.print("Thappu");
+        }
+        
+        catch(ArrayIndexOutofBoundsException e){
+            System.out.print("Fail");
+        }
+        
+        catch(NullpointerException e){
+            System.out.print("Thappu");
+        }
+    }
+}
