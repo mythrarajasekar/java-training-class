@@ -1,0 +1,26 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        List<String> ls = new ArrayList<>();
+        ls.add("Hi");
+        ls.add("I am");
+        ls.add("Mythra");
+        System.out.println(ls);
+
+        ls.remove(1);
+        System.out.println(ls);
+
+        System.out.println(ls.isEmpty());
+
+        ls.set(0, "Hello");
+        System.out.println(ls);
+
+        String a = ls.get(1);
+        System.out.println(a);
+
+        int m = ls.size();
+        System.out.println(m);
+        
+    }
+}
