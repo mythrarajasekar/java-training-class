@@ -2,7 +2,7 @@ import java.util.*;
 
 class Main {
     public static void main(String[] args) {
-        List<String> ls = new ArrayList<>();
+        List<String> ls = new LinkedList<>();
         ls.add("Hi");
         ls.add("I am");
         ls.add("Mythra");
@@ -21,6 +21,10 @@ class Main {
 
         int m = ls.size();
         System.out.println(m);
+        
+        for(String n : ls){
+            System.out.println(n);
+        }
         
     }
 }
