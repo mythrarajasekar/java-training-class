@@ -1,0 +1,24 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Set<String> ls = new HashSet<>();
+        ls.add("Hi");
+        ls.add("I am");
+        ls.add("Mythra");
+        System.out.println(ls);
+
+        ls.remove("I am");
+        System.out.println(ls);
+
+        System.out.println(ls.isEmpty());
+        
+        int m = ls.size();
+        System.out.println(m);
+        
+        for(String n : ls){
+            System.out.println(n);
+        }
+        
+    }
+}
