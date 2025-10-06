@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+class Neon {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+
+        int sq = num * num;
+        System.out.println("Square of the number: " + sq);
+
+        int sumOfDigits = 0;
+        int temp = sq;
+
+        while (temp > 0) {
+            int digit = temp % 10;
+            sumOfDigits += digit;
+            temp /= 10;       
+            }
+
+        if (sumOfDigits == num) {
+            System.out.println(num + " is a NEON number");
+        } else {
+            System.out.println(num + " is NOT a NEON number");
+        }
+    }
+}
