@@ -1,0 +1,98 @@
+import java.util.*;
+
+class Node{
+    int data;
+    Node next;
+    
+    Node(int value){
+        this.data = value;
+        this.next = null;
+    }
+}
+
+class SinglyLinkedList{
+    Node head;
+    
+    public void insert (int value){
+        Node newnode = new Node(value);
+        if (head == null){
+            head = newnode;
+            return;
+        }
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        temp.next = newnode;
+    }
+    
+    public void display(){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data + "\n");
+            temp = temp.next;
+        }
+    }
+    
+    public void search(int value){
+        int pos = 1;
+        Node temp = head;
+        while (temp != null){
+            if(temp.data == value){
+                System.out.println("the value is found @ " + pos);
+                return;
+            }
+            temp = temp.next;
+            pos++;
+        }
+        System.out.println("Number not found");
+    }
+    
+    public void delete(int value){
+        Node temp = head;
+        if(head == null)
+        {
+            System.out.print("the list is empty");
+            return;
+        }
+        if(temp.data == value){
+            head = temp.next;
+            return;
+        }
+        
+        while(temp.next!=null && temp.next.data!=value)
+        {
+            temp = temp.next;
+        }
+        if(temp.next == null)
+        {
+            System.out.println("Value not found");
+            return;
+        }else{
+            temp.next = temp.next.next;
+        }
+        }
+    }
+
+
+public class Main{
+    public static void main(String [] args){
+        SinglyLinkedList s1 = new SinglyLinkedList();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter how many numbers u need to enter : ");
+        int a = sc.nextInt();
+        for (int i = 1 ; i <= a ; i++){
+            System.out.print("Enter number " + i + ": ");
+            int b = sc.nextInt();
+            s1.insert(b);
+        }
+        s1.display();
+        System.out.print("Enter number to find : ");
+        int n = sc.nextInt();
+        s1.search(n);
+        System.out.print("Enter number to delete : ");
+        int x = sc.nextInt();
+        s1.delete(x);
+        s1.display();
+    }
+}
