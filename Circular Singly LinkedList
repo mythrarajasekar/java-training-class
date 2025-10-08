@@ -1,0 +1,66 @@
+class CNode{
+    int data;
+    CNode next;
+    
+    CNode(int value){
+        this.data=value;
+        this.next =null;
+    }
+}
+class circular{
+    CNode head;
+    CNode tail;
+    public void insert(int value){
+        CNode newnode= new CNode(value);
+        if(head ==null){
+            head=newnode;
+            tail=newnode;
+            newnode.next=head;
+        }
+        else{
+            tail.next=newnode;
+            tail=newnode;
+            tail.next=head;
+        }
+    }
+    public void search(int value){
+        CNode temp=head;
+        int pos=1;
+        do{
+            if(temp.data==value){
+                System.out.println("Value\t"+value+"\tfound at\t"+pos);
+                return;
+            }
+            temp=temp.next;
+            pos++;
+        }
+        while(temp!=head);
+            
+        
+    }
+    public void display(){
+        if(head==null){
+            System.out.println("List is empty");
+            return;
+        }
+        CNode temp = head;
+        do{
+            System.out.print(temp.data+"-> ");
+            temp =temp.next;
+        }
+        while(temp!=head);
+        System.out.println("back to head");
+            
+        
+    }
+}
+
+public class Main{
+    public static void main(String[]args){
+        circular c= new circular();
+        c.insert(50);
+        c.insert(40);
+        c.search(40);
+        c.display();
+    }
+}
