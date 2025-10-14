@@ -1,0 +1,49 @@
+class stackarray {
+int[] stack;
+int top;
+int maxsize;
+
+stackarray(int size) {
+maxsize = size;
+stack=new int[maxsize];
+top=-1;
+}
+void push(int value) {
+if(top==maxsize-1) {
+System.out.println("Stcak overflow"+value);
+return;
+}
+stack[++top]=value;
+System.out.println(value+"pushed into stack");
+}
+void pop() {
+if(top ==-1) {
+System.out.println("Stack underflow to pop");
+return;
+}
+System.out.println(stack[top--]+"poped frpm stack");
+}
+void peek() {
+if(top==-1) {
+System.out.println("stack is empty");
+}
+else {
+System.out.println("top element"+stack[top]);
+}
+}
+void display() {
+if(top==-1) {
+System.out.println("stack is empty");
+}
+for(int i=0; i<maxsize; i++) {
+System.out.println(stack[i]);
+}
+}
+}
+class Main {
+public static void main(String[]args) {
+stackarray  s = new stackarray(8);
+s.push(40);
+s.display();
+}
+}
