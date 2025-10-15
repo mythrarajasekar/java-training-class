@@ -1,0 +1,208 @@
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+class Main {
+    public static void main(String[] args) {
+        Crackers crackers = new Crackers();
+        Cart cart = new Cart();
+        Display dis = new Display();
+
+        String customerName = dis.frontpage();
+
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("***********************************************");
+
+        System.out.println("\nWelcome, " + customerName + "!");
+        System.out.println("Here are the available crackers:\n");
+
+        crackers.listCrackers();
+        
+        
+        System.out.println("***********************************************");
+
+        System.out.println("\nEnter the name of the cracker you want to buy or type 'done' to finish:");
+        while (true) {
+            String crackerName = sc.nextLine();
+            if (crackerName.equalsIgnoreCase("done")) {
+                break;
+            }
+            if (crackers.crack.containsKey(crackerName)) {
+                System.out.print("How many " + crackerName + " do you want to add to your cart? ");
+                int quantity = sc.nextInt();
+                sc.nextLine();
+                cart.addToCart(crackerName, crackers.crack.get(crackerName), quantity);
+                System.out.println(quantity + " of " + crackerName + " added to your cart!");
+            } else {
+                System.out.println("Cracker not found! Please try again.");
+            }
+        }
+        
+        System.out.println("***********************************************");
+
+        double totalPrice = cart.calculateTotalPrice();
+
+        System.out.println("\nYour Cart:");
+        cart.showCart();
+        System.out.println("Total Price: ₹" + totalPrice);
+
+        cart.printInvoice(totalPrice, customerName);
+
+        System.out.println("***********************************************");
+        Payment payment = new Payment();
+        payment.pay(totalPrice);
+    }
+}
+
+class Display {
+    public String frontpage() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("*               VANDHA VEDIKALAM               *");
+        System.out.println("*                                             *");
+        System.out.println("*                HAPPY DIWALI!                *");
+        System.out.println("*                                             *");
+        System.out.println("***********************************************");
+
+        System.out.print("* ENTER YOUR NAME          : ");
+        String customerName = sc.nextLine();
+
+        System.out.print("* ENTER YOUR PHONE NUMBER  : ");
+        String phone = sc.nextLine();
+
+        System.out.print("* ENTER YOUR ADDRESS       : ");
+        String address = sc.nextLine();
+
+        System.out.println("***********************************************");
+        return customerName;
+    }
+}
+
+class Crackers {
+    HashMap<String, Double> crack = new HashMap<>();
+
+    public Crackers() {
+        
+        crack.put("Sparkle Rocket Science Cold Pyro",140.0);
+        crack.put("Golden Birthday Party Cold Pyro Sparkle", 60.0);
+        crack.put("Black Cat Cold Pyro", 65.0);
+        crack.put("12CM 4 COLOUR SPARKLERS", 80.0);
+        crack.put("Noise Maker Rainbow 7 Hills Cracker Box", 950.0);
+        crack.put("7 Shots Crackers", 199.0);
+        crack.put("Cocktail Spinner", 660.0);
+        crack.put("Classic Wheel (10 Pcs)", 300.0);
+        crack.put("Flowerpots Small", 210.0);
+        crack.put("Flowerpots Special", 2190.0);
+        crack.put("India Surprise(Mayil)", 560.0);
+        crack.put("Colour Rocket", 626.0);
+        crack.put("Pop Pop", 565.0);
+        crack.put("Ninja Chakara", 645.0);
+        crack.put("Lazer Strike", 987.0);
+        crack.put("Colour Shark", 321.0);
+        crack.put("Pikachu", 999.0);
+        
+        System.out.println("***********************************************");
+    }
+
+    public void listCrackers() {
+        for (String cracker : crack.keySet()) {
+            System.out.println(cracker + " - ₹" + crack.get(cracker));
+        }
+    }
+}
+
+class Cart {
+    private HashMap<String, Integer> cartItems = new HashMap<>();
+    private HashMap<String, Double> itemPrices = new HashMap<>();
+
+    public void addToCart(String cracker, double price, int quantity) {
+        if (cartItems.containsKey(cracker)) {
+            cartItems.put(cracker, cartItems.get(cracker) + quantity);
+        } else {
+            cartItems.put(cracker, quantity);
+            itemPrices.put(cracker, price);
+        }
+    }
+
+    public double calculateTotalPrice() {
+        double total = 0;
+        for (String cracker : cartItems.keySet()) {
+            total += itemPrices.get(cracker) * cartItems.get(cracker);
+        }
+        return total;
+    }
+
+    public void showCart() {
+        for (String cracker : cartItems.keySet()) {
+            int quantity = cartItems.get(cracker);
+            double price = itemPrices.get(cracker);
+            System.out.println(cracker + " (x" + quantity + ") - ₹" + (price * quantity));
+        }
+    }
+
+    public void printInvoice(double totalPrice, String customerName) {
+        
+        System.out.println("***********************************************");
+        System.out.println("\n====================================");
+        System.out.println("              INVOICE");
+        System.out.println("====================================");
+        String currentDateTime = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date());
+        System.out.println("Date & Time  : " + currentDateTime);
+        System.out.println("Customer     : " + customerName);
+        System.out.println("------------------------------------");
+        
+        System.out.println("***********************************************");
+
+        for (String cracker : cartItems.keySet()) {
+            int quantity = cartItems.get(cracker);
+            double price = itemPrices.get(cracker);
+            System.out.println(cracker + " (x" + quantity + ") - ₹" + (price * quantity));
+        }
+
+        System.out.println("***********************************************");
+        System.out.println("------------------------------------");
+        System.out.println("Total Price: ₹" + totalPrice);
+        System.out.println("====================================");
+        System.out.println("Thank you for shopping with us!");
+        System.out.println("Wishing you a Happy Diwali!");
+        System.out.println("====================================\n");
+        
+        System.out.println("***********************************************");
+    }
+}
+
+class Payment {
+    public void pay(double price) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("CHOOSE THE PAYMENT METHOD : ");
+        System.out.println("SELECT 1 for COD ");
+        System.out.println("SELECT 2 for ONLINE PAYMENT ");
+        int paymentMethod = sc.nextInt();
+
+        if (paymentMethod == 1) {
+            System.out.println("\nYou have selected Cash on Delivery!");
+            System.out.println("Total Amount: ₹" + price);
+        } else if (paymentMethod == 2) {
+            System.out.println("\nYou have selected UPI PAYMENT!");
+            System.out.println("Total Amount: ₹" + price);
+            System.out.print("Enter Your UPI ID: ");
+            String upiid = sc.next();
+            System.out.print("Enter your PIN: ");
+            int pin = sc.nextInt();
+            System.out.println("TRANSACTION SUCCESSFUL !!");
+        } else {
+            System.out.println("INVALID CHOICE OF TRANSACTION METHOD !!");
+            
+        }
+        
+        System.out.println("***********************************************");
+
+        System.out.println("\nThank You For Visiting!");
+        System.out.println("* HAPPY BLAST * !");
+        System.out.println("----- HAPPY DIWALI -----");
+        
+        System.out.println("***********************************************");
+    }
+}
